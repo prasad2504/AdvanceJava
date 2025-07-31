@@ -6,49 +6,47 @@ public class Volatiledemo3 {
 	 
 	public static void main(String[] args) throws InterruptedException {
 		
+		Player p1 = new Player();
 		
-		Demo3 demo2=new Demo3();
-		
-		Thread34 t34=new Thread34(demo2);
-		
-		Thread35 t35=new Thread35(demo2);
-		
-		t34.start();
-		t35.start();
+		FirstThread one = new FirstThread(p1);
+		SecondThread two = new SecondThread(p1);
 		
 		
-		t34.join();
-		t35.join();
+		one.start();
+		two.start();
+		
+		one.join();
+		two.join();
+		
 		
 			    	
 			    		
 	}
 }
  
-class Demo3
-{
-	  int num=10;
-	
-	public void increase()
-	{
-		num++;
-	}
-	
-	public int  getint()
-	{
-		return num;
-	}
 
+class Player {
+	
+	volatile int runs=1;
+	
+	public void inc() {
+		runs++;
+	}
+	
+	public int getruns() {
+		return runs;
+	}
 }
 
-class Thread34 extends Thread
-{
-	Demo3 demo;
-	public Thread34( Demo3 demo) {
-		this.demo=demo;
+class FirstThread extends Thread{
+	Player player;
+	
+	public FirstThread(Player player) {
+		this.player=player;
 	}
-	public void run()
-	{
+	
+	public void run(){
+		
 		
 		try {
 			Thread.sleep(1000);
@@ -56,42 +54,39 @@ class Thread34 extends Thread
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i=0;i<300;i++) {
-		demo.increase();
+		
+		for(int i=1;i<=500;i++) {
+			player.inc();
 		}
+		
+		
+		System.out.println(player.getruns());
 	}
+	
 }
 
-class Thread35 extends Thread
-{
-	Demo3 demo;
+class SecondThread extends Thread{
+	Player player;
 	
-	public Thread35(Demo3 demo)
-	{
-		this.demo=demo;
+	public SecondThread(Player player) {
+		this.player=player;
 	}
 	
-	
-	public void run()
-	{
-		while(true)	
-		{
-			System.out.println("condition started....");
-			while(demo.getint()<250)
-			{
-				// System.out.println("the condition is not yet fullfilled....");
-			}
-			if(demo.getint()<250)
-			{
-				
-				System.out.println("waiting for the condition to get executed.....");
-			}
+	public void run() {
+		
+		
+		System.out.println("waiting for condition fullfilled...............................");
+		
+		while(true) {
 			
-			else
-			{
-				System.out.println("the condition is passed.... the code executed...");
+			
+			if(player.getruns()>100) {
+				System.out.println("condition fullfilled");
 				break;
 			}
-	    }
+			
+		}
+		
 	}
+	
 }
