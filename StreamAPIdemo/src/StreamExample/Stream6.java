@@ -1,3 +1,17 @@
+
+
+
+//map , filter , sorted -> intermediatory
+
+// count 
+
+//foreach
+
+//max , min -> comparator
+
+//skip , limit
+
+
 package StreamExample;
 
 import java.util.ArrayList;
