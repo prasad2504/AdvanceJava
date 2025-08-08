@@ -69,6 +69,7 @@ public class Stream9 {
 	    .forEach(System.out::println);
 		
 		
+	
 		
 //	-------------------------------------------------------------------------------------	
 //		list.stream().sorted(Comparator.comparingDouble((i)->i.salary)).forEach((i)->System.out.println(i));
