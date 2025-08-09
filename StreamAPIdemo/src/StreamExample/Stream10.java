@@ -2,7 +2,7 @@ package StreamExample;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.BinaryOperator;
 
 public class Stream10 {
 	
@@ -15,7 +15,11 @@ public class Stream10 {
 		list.add(40);
 		list.add(60);
 		
-		Optional<Integer> k = list.stream().reduce((i,j)->i+j);
+//		Optional<Integer> k = list.stream().reduce((i,j)->i+j);
+//		System.out.println(k);
+		
+		BinaryOperator<Integer> bin = (i,j)->i+j;
+		int k = list.stream().reduce(10,bin);
 		System.out.println(k);
 	}
 

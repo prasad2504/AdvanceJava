@@ -3,7 +3,7 @@ package StreamExample;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.OptionalDouble;
+import java.util.function.BinaryOperator;
 
 public class Stream9 {
 	
@@ -32,6 +32,8 @@ public class Stream9 {
 		list.stream()
 		.sorted()
 		.forEach((i)->System.out.println(i));
+		
+		//why it is not strated from 125
 		
 		System.out.println("************************************************");
 		
@@ -69,6 +71,15 @@ public class Stream9 {
 	    .forEach(System.out::println);
 		
 		
+		
+		System.out.println("#####################################");
+		
+		BinaryOperator<Double> bin = (i,j)->i+j;
+		
+		//que first10 high salary.
+	    
+		double d = list.stream().sorted().limit(10).map((i)->i.salary).reduce(0.0,bin);
+		System.out.println(d);
 	
 		
 //	-------------------------------------------------------------------------------------	
@@ -138,7 +149,7 @@ class Employee implements Comparable<Employee> {
 
 	@Override
 	public int compareTo(Employee o) {
-		return o.email.length()-this.email.length();
+		return (int) (o.salary-this.salary);
 	}
 	
 	
