@@ -1,5 +1,5 @@
 
-//if both  thread not notifying then deadlock occures.
+
 
 
 

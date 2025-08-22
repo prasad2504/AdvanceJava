@@ -51,8 +51,11 @@ public class Stream9 {
 		.map((i)->new StringBuffer(i.email).length())
 		.forEach((i)->System.out.println(i));
 		
+	
+		
 		System.out.println("************************************************");
 
+		
 		//que3
 		list.stream()
 		.map((i)->i.email.toUpperCase()).forEach((i)->System.out.println(i));
